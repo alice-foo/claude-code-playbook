@@ -4,8 +4,11 @@
 
 Claude Code でアプリ開発を始めるためのプレイブックです。
 
-空のフォルダで `/init-playbook-dotnet` や `/init-playbook-swift` を実行すると、
+空のフォルダで `/init-playbook-generic`、`/init-playbook-dotnet`、`/init-playbook-swift` を実行すると、
 Claude Code が要件のヒアリングから設計・実装まで段階的に進めてくれます。
+
+- **汎用初期化**：言語・フレームワークに依存しない共通設定を即座に適用
+- **言語別初期化**：.NET、Swift など特定の言語に最適化されたフロー
 
 ## 使い方
 
@@ -29,6 +32,12 @@ mkdir -p ~/.claude/commands && cp commands/*.md ~/.claude/commands/
 
 空のフォルダで Claude Code を起動し、以下を入力するだけです。
 
+**言語非依存の汎用初期化の場合:**
+```
+/init-playbook-generic
+```
+（質問なしで、共通的な設定テンプレート（CLAUDE.md、README.md、.gitignore など）を即座に生成）
+
 **.NET + C# 開発の場合:**
 ```
 /init-playbook-dotnet
@@ -50,8 +59,9 @@ mkdir -p ~/.claude/commands && cp commands/*.md ~/.claude/commands/
 
 | コマンド | 対象 |
 |---------|------|
-| `/init-playbook-dotnet` | .NET + C# アプリ開発向けの初期化 |
-| `/init-playbook-swift` | Swift + SwiftUI + Xcode アプリ開発向けの初期化 |
+| `/init-playbook-generic` | 汎用プロジェクト初期化（質問なし、即座にテンプレート生成） |
+| `/init-playbook-dotnet` | .NET + C# アプリ開発向けの初期化（インタビュー式、計画先行） |
+| `/init-playbook-swift` | Swift + SwiftUI + Xcode アプリ開発向けの初期化（インタビュー式、計画先行） |
 
 ## リポジトリ構成
 
@@ -63,8 +73,9 @@ claude-code-playbook/
 ├── LICENSE             # MIT License
 ├── README.md           # このファイル
 └── commands/           # ~/.claude/commands/ にコピーして使います
-    ├── init-playbook-dotnet.md  # .NET + C# アプリ開発向けの初期化
-    └── init-playbook-swift.md   # Swift + SwiftUI + Xcode アプリ開発向けの初期化
+    ├── init-playbook-generic.md     # 汎用プロジェクト初期化
+    ├── init-playbook-dotnet.md      # .NET + C# アプリ開発向けの初期化
+    └── init-playbook-swift.md       # Swift + SwiftUI + Xcode アプリ開発向けの初期化
 ```
 
 ## 設計原則

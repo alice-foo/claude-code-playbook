@@ -13,6 +13,7 @@
    - macOS: `mkdir -p ~/.claude/commands && cp commands/*.md ~/.claude/commands/`
 2. コピー後、Claude Code の再起動が必要であることを伝える
 3. 再起動後に使えるコマンドの一覧を提示:
+   - `/init-playbook-generic` — 汎用プロジェクト初期化（質問なし、即座にテンプレート生成）
    - `/init-playbook-dotnet` — .NET + C# アプリ開発向けの初期化
    - `/init-playbook-swift` — Swift + SwiftUI + Xcode アプリ開発向けの初期化
 4. 使い方: 新しい空フォルダで Claude Code を起動し、上記コマンドを入力する
