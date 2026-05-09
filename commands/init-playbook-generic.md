@@ -176,16 +176,26 @@ dist/
 *.o
 *.a
 *.so
+*.dylib
+*.dll
 
 # 依存関係
 node_modules/
 vendor/
 packages/
+.gradle/
 
 # 環境
 .env
 .env.local
+.env.*.local
 *.log
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
 
 # その他
 tmp/
@@ -193,10 +203,7 @@ temp/
 *.bak
 ```
 
-### 4. .claude/CLAUDE.md（グローバル設定）
-ユーザーの全プロジェクト共通設定があれば保持。なければ生成スキップ。
-
-### 5. .claude/memory/
+### 4. .claude/memory/
 メモリシステムディレクトリを作成。MEMORY.md インデックスを生成：
 
 ```markdown
@@ -211,74 +218,25 @@ temp/
 - **project**: 進行中のプロジェクト情報
 - **reference**: 外部リソースへのポインタ
 
-詳細は [メモリシステム](https://claude.ai) を参照。
+詳細は Claude Code のメモリシステムのドキュメントを参照。
 ```
 
-## 実装
+## 生成手順
 
-このスキルは、Python スクリプト（`init-playbook-generic-impl.py`）を実行して、以下の処理を行います：
+このスキルが実行されたら、現在のディレクトリに以下のファイルを直接生成してください：
 
-### 生成処理
+1. `CLAUDE.md` — 上記テンプレートの内容で生成
+2. `README.md` — 上記テンプレートの内容で生成
+3. `.gitignore` — 上記の汎用除外ルールで生成
+4. `.claude/memory/MEMORY.md` — 上記のメモリインデックスで生成
 
-```bash
-python init-playbook-generic-impl.py [target-directory]
-```
-
-処理内容：
-1. `CLAUDE.md` - プロジェクト設定テンプレート
-2. `README.md` - プロジェクト説明テンプレート
-3. `.gitignore` - 汎用除外ルール
-4. `.claude/memory/MEMORY.md` - メモリシステムインデックス
-
-### 実行結果の例
-
-```
-============================================================
-✅ プロジェクト初期化完了
-============================================================
-
-プロジェクト: my-project
-ルートディレクトリ: /path/to/my-project
-
-生成されたファイル:
-  ✓ CLAUDE.md
-  ✓ README.md
-  ✓ .gitignore
-  ✓ .claude/memory/MEMORY.md
-
-📝 次のステップ:
-  1. CLAUDE.md を編集して、プロジェクト概要を記述
-  2. README.md を編集して、プロジェクト説明を追加
-  3. 言語・フレームワークに応じた設定を追加
-  4. フェーズ分割して実装を開始
-```
-
-## 利用シーン
-
-- 新しいプロジェクトを始めるとき
-- 既存プロジェクトに Claude Code ガイドラインを導入したいとき
-- 複数のプロジェクトで共通的な設定を統一したいとき
+生成後、ユーザに以下を案内してください：
+1. `CLAUDE.md` を編集して、プロジェクト概要を記述する
+2. `README.md` を編集して、プロジェクト説明を追加する
+3. 言語・フレームワークに応じた設定を追加する
 
 ## 注意事項
 
 このスキルは汎用的なテンプレートを生成するのみです。プロジェクト固有の設定（技術スタック、コーディング規約、フェーズ計画など）は、生成後にユーザーが編集・カスタマイズしてください。
-
-## 動作確認
-
-新規プロジェクトディレクトリで、以下を実行して確認してください：
-
-```bash
-# テスト用ディレクトリを作成
-mkdir test-project
-cd test-project
-
-# スクリプト実行
-python /path/to/init-playbook-generic-impl.py .
-
-# ファイル確認
-ls -la
-cat CLAUDE.md
-cat README.md
-```
 
 $ARGUMENTS
